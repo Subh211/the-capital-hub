@@ -35,7 +35,7 @@ class ProductDetailsPage extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     product.name,
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: const TextStyle( fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
               ),

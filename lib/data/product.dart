@@ -18,6 +18,6 @@ class Product {
     required this.reviews,
     required this.rating,
     required this.savedForLater,
-    this.decription = "Discover our powerful vacuum cleaner designed for modern homes. With its sleek design, advanced suction technology, and easy maneuverability, it tackles dirt and dust with precision. Perfect for both carpets and hard floors, it's your ultimate solution for a cleaner, healthier living space. Get ready to enjoy spotless results with minimal effort!"
+    this.decription = "Discover our powerful vacuum cleaner designed for modern homes. With its sleek design, advanced suction technology, and easy maneuverability, it tackles dirt and dust with precision. Perfect for both carpets and hard floors, it's your ultimate solution for a cleaner, healthier living space. Get ready to enjoy  spotless results with minimal effort!"
   });
 }

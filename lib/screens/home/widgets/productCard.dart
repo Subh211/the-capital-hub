@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_capital_hub/data/product.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatelessWidget  {
   final Product product;
 
   const ProductCard({Key? key, required this.product}) : super(key: key);
