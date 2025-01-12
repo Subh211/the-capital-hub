@@ -11,8 +11,8 @@ class ProductCard extends StatelessWidget {
     return Card(
       color: Colors.black,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-          side: BorderSide(color: Colors.grey)
+        borderRadius: BorderRadius.circular(15),
+        side: BorderSide(color: Colors.grey),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -24,126 +24,93 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(product.imageUrl, height: 80),
-                Column(
-                  children: [
-                    Text(
-                      '\$${product.price}',
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    if (product.oldPrice != null)
-                      // Text(
-                      //   '\$${product.oldPrice}',
-                      //   style: const TextStyle(
-                      //       color: Colors.grey,
-                      //       decoration: TextDecoration.lineThrough),
-                      // ),
-                      Text.rich(
-                        TextSpan(
-                          text: '\$${product.oldPrice}',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            decoration: TextDecoration.lineThrough,
-                            decorationColor: Colors.grey,
-                          ),
-                        ),
-                      ),
-                   ],
-                ),
-              ],
-            ),
-            Text(
-              product.name,
-              style: const TextStyle(color: Colors.blue, fontSize: 16),
-            ),
-            for (var feature in product.features)
-              Text('* $feature', style: const TextStyle(color: Colors.white)),
-            Spacer(),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Icon(
-            //       product.savedForLater ? Icons.favorite : Icons.favorite_border,
-            //       color: product.savedForLater ? Colors.red : Colors.white,
-            //     ),
-            //     Text(
-            //       '${product.rating.toStringAsFixed(1)} ★ | ${product.reviews} reviews',
-            //       style: const TextStyle(color: Colors.orange),
-            //     ),
-            //   ],
-            // )
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children:
-            //   [
-            //     Row(
-            //       children: [
-            //         Icon(
-            //           product.savedForLater ? Icons.favorite : Icons.favorite_border,
-            //           color: product.savedForLater ? Colors.red : Colors.white, ),
-            //           Text( 'Save for later',
-            //             style: const TextStyle(color: Colors.orange),
-            //           ),
-            //       ],
-            //     ),
-            //     Column(
-            //       children: [
-            //         Row(
-            //           children: List.generate(5, (index) {
-            //             return Icon(
-            //               index < product.rating ? Icons.star : Icons.star_border, color: Colors.orange,
-            //               size: 15,
-            //             );
-            //           }),
-            //         ),
-            //         Text( '${product.reviews} reviews',
-            //           style: const TextStyle(color: Colors.orange),
-            //         ),
-            //       ],
-            //     ),
-            //   ],
-            // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
                 Flexible(
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Icon(
-                        product.savedForLater ? Icons.favorite : Icons.favorite_border,
-                        color: product.savedForLater ? Colors.red : Colors.white,
+                      Text(
+                        '\$${product.price}',
+                        style: const TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      const SizedBox(width: 4), // Space between icon and text
-                      Flexible(
-                        child: Text(
-                          'Save for later',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12
+                      if (product.oldPrice != null)
+                        Text.rich(
+                          TextSpan(
+                            text: '\$${product.oldPrice}',
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough,
+                              decorationColor: Colors.grey,
+                            ),
                           ),
-                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                      ),
                     ],
                   ),
                 ),
-                Column(
-                  children: [
-                    Row(
-                      children: List.generate(5, (index) {
-                        return Icon(
-                          index < product.rating ? Icons.star : Icons.star_border,
-                          color: Colors.orange,
-                          size: 15,
-                        );
-                      }),
-                    ),
-                    Text(
-                      '${product.reviews} reviews',
-                      style: const TextStyle(color: Colors.orange),
-                    ),
-                  ],
-                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            Text(
+              product.name,
+              style: const TextStyle(color: Colors.blue, fontSize: 16),
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: 4),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: product.features.map((feature) {
+                return Text(
+                  '* $feature',
+                  style: const TextStyle(color: Colors.white),
+                  overflow: TextOverflow.ellipsis,
+                );
+              }).toList(),
+            ),
+            Spacer(),
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              children: [
+               Row(
+                 children: [
+                   Flexible(
+                     child: Row(
+                       children: [
+                         Icon(
+                           product.savedForLater ? Icons.favorite : Icons.favorite_border,
+                           color: product.savedForLater ? Colors.red : Colors.white,
+                         ),
+                         const SizedBox(width: 4),
+                         Flexible(
+                           child: Text(
+                             'Save for later',
+                             style: const TextStyle(color: Colors.white, fontSize: 12),
+                             maxLines: 2,
+                             overflow: TextOverflow.ellipsis,
+                           ),
+                         ),
+                       ],
+                     ),
+                   ),
+                   Column(
+                     children: [
+                       Row(
+                         children: List.generate(5, (index) {
+                           return Icon(
+                             index < product.rating ? Icons.star : Icons.star_border,
+                             color: Colors.orange,
+                             size: 15,
+                           );
+                         }),
+                       ),
+                       Text(
+                         '${product.reviews} reviews',
+                         style: const TextStyle(color: Colors.orange),
+                         overflow: TextOverflow.ellipsis,
+                       ),
+                     ],
+                   ),
+                 ],
+               )
               ],
             ),
           ],
